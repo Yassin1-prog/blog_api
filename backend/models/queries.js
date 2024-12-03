@@ -51,9 +51,14 @@ const getPostById = async (id) => {
   });
 };
 
-const createPost = async (data) => {
+const createPost = async (authorId, title, content, published) => {
   return await prisma.post.create({
-    data,
+    data: {
+      authorId,
+      title,
+      content,
+      published,
+    },
   });
 };
 

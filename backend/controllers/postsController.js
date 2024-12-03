@@ -21,7 +21,8 @@ exports.postsGet = async (req, res) => {
 
 exports.postsPost = async (req, res) => {
   try {
-    const post = await db.createPost(req.body);
+    const { authorId, title, content, published } = req.body;
+    const post = await db.createPost(authorId, title, content, published);
     res.status(201).json(post);
   } catch (error) {
     res.status(500).json({ error: error.message });

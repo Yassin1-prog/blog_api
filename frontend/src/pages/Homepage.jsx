@@ -3,7 +3,7 @@ import PostPreview from "../components/PostPreview";
 import WelcomePage from "./WelcomePage";
 import { fetchPosts } from "../api";
 
-const Homepage = () => {
+const Homepage = ({ islogged }) => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
 
@@ -13,13 +13,7 @@ const Homepage = () => {
       .catch(() => setError("Failed to load posts."));
   }, []);
 
-  const isAuthenticated = () => {
-    const token = localStorage.getItem("token");
-    // Check if token exists and is not empty
-    return token !== null && token !== "";
-  };
-
-  return isAuthenticated() ? (
+  return islogged ? (
     <div>
       <h1>All Posts</h1>
       {error && <p className="error">{error}</p>}

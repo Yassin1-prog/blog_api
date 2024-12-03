@@ -70,3 +70,77 @@ input {
 button {
   align-self: center;
 }
+
+.manage-post-page {
+  padding: 20px;
+}
+
+.manage-post-page h1 {
+  text-align: center;
+}
+
+.post-list {
+  margin-top: 20px;
+}
+
+.post-item {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
+.post-item h2 {
+  margin: 0 0 10px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.post-actions .btn {
+  flex: 1;
+  text-align: center;
+}
+
+.create-post-page {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.create-post-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-post-page form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-post-page label {
+  margin-bottom: 15px;
+}
+
+.create-post-page textarea {
+  min-height: 150px;
+}
+
+.create-post-page input,
+.create-post-page textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.create-post-page .btn {
+  align-self: center;
+  margin-top: 10px;
+}

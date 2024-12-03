@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SignInPage = () => {
+const SignInPage = ({ onLeave }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -23,7 +23,11 @@ const SignInPage = () => {
 
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      localStorage.setItem("role", username === "admin" ? "admin" : "user");
+      localStorage.setItem("role", data.role);
+      //console.log(Number.isInteger(data.id));
+      //console.log(Number.isInteger(parseInt(data.id)));
+      localStorage.setItem("id", data.id);
+      onLeave(true);
       navigate("/");
     } catch {
       setError("Sign-in failed. Please try again.");

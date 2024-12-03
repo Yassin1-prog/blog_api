@@ -77,7 +77,9 @@ app.post("/login", (req, res, next) => {
     if (!user) return res.status(401).json({ error: info.message });
 
     const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "1h" });
-    res.json({ token });
+    const role = user.role;
+    const id = user.id;
+    res.json({ token, role, id });
   })(req, res, next);
 });
 
