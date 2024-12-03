@@ -48,7 +48,7 @@ exports.postsDelete = async (req, res) => {
 
 exports.commentsGet = async (req, res) => {
   try {
-    const comments = await db.getCommentsByPostId(parseInt(req.params.postId));
+    const comments = await db.getCommentsByPostId(parseInt(req.params.id));
     res.json(comments);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -57,7 +57,7 @@ exports.commentsGet = async (req, res) => {
 
 exports.commentsPost = async (req, res) => {
   try {
-    const commentData = { ...req.body, postId: parseInt(req.params.postId) };
+    const commentData = { ...req.body, postId: parseInt(req.params.id) };
     const comment = await db.createComment(commentData);
     res.status(201).json(comment);
   } catch (error) {

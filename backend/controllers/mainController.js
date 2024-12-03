@@ -33,16 +33,17 @@ exports.createUser = [
   validateSignup,
   async (req, res, next) => {
     const errors = validationResult(req);
+    /*
     if (!errors.isEmpty()) {
       return res.status(500).json({ error: errors.array() });
     }
-
+    Validation will be handled in the frontend with react so anything related to express-validator 
+    is actually not needed, "arleady used username" will be done here since it isnt possible in the frontend
+    */
     const { username, password } = req.body;
     const duplicate = await db.getUserByName(username);
     if (duplicate) {
-      return res
-        .status(500)
-        .json({ error: "The username arleady exists, try a new one" });
+      return res.status(409).json({ error: "DUPLICATE_USERNAME" });
     }
 
     bcrypt.hash(password, 10, async (err, hashedpassword) => {

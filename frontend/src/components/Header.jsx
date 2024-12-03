@@ -15,6 +15,16 @@ const Header = () => {
       <nav>
         <Link to="/">Home</Link>
         {isAdmin && <Link to="/manage-posts">Manage Posts</Link>}
+        {localStorage.getItem("token") !== null && (
+          <a
+            href="/"
+            onClick={() => {
+              localStorage.setItem("token", "");
+            }}
+          >
+            Logout
+          </a>
+        )}
       </nav>
     </header>
   );

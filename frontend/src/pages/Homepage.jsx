@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PostPreview from "../components/PostPreview";
+import WelcomePage from "./WelcomePage";
 import { fetchPosts } from "../api";
 
 const Homepage = () => {
@@ -12,7 +13,13 @@ const Homepage = () => {
       .catch(() => setError("Failed to load posts."));
   }, []);
 
-  return (
+  const isAuthenticated = () => {
+    const token = localStorage.getItem("token");
+    // Check if token exists and is not empty
+    return token !== null && token !== "";
+  };
+
+  return isAuthenticated() ? (
     <div>
       <h1>All Posts</h1>
       {error && <p className="error">{error}</p>}
@@ -20,6 +27,8 @@ const Homepage = () => {
         <PostPreview key={post.id} post={post} />
       ))}
     </div>
+  ) : (
+    <WelcomePage />
   );
 };
 

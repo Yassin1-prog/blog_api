@@ -6,11 +6,14 @@ const JwtStrategy = require("passport-jwt").Strategy;
 const { ExtractJwt } = require("passport-jwt");
 const jwt = require("jsonwebtoken");
 const db = require("./models/queries");
+const cors = require("cors");
 
 const app = express();
 
 const postsRouter = require("./routes/postsRouter.js");
 const mainController = require("./controllers/mainController");
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
