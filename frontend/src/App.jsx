@@ -7,10 +7,8 @@ import SignInPage from "./pages/SigninPage";
 import Homepage from "./pages/Homepage";
 import ManagePage from "./pages/ManagePage";
 import CreatePage from "./pages/CreatePage";
-/*
+import EditPage from "./pages/EditPage";
 import PostPage from "./pages/PostPage";
-import EditPostPage from "./pages/EditPostPage";
-*/
 
 const App = () => {
   const [islogged, setIsLogged] = useState(false);
@@ -38,8 +36,10 @@ const App = () => {
             path="/signin"
             element={<SignInPage onLeave={handleLoginStatusChange} />}
           />
+          <Route path="/posts/:id" element={<PostPage />} />
           <Route path="/manage-posts" element={<ManagePage />} />
           <Route path="/manage-posts/add" element={<CreatePage />} />
+          <Route path="/manage-posts/edit/:id" element={<EditPage />} />
         </Routes>
       </main>
       <Footer />

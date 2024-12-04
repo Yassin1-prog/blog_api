@@ -39,7 +39,7 @@ const ManagePage = () => {
   };
 
   const handleEdit = (postId) => {
-    navigate(`/edit-post/${postId}`);
+    navigate(`edit/${postId}`);
   };
 
   return (

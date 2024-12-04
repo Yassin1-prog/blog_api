@@ -152,3 +152,120 @@ button {
   align-self: center;
   margin-top: 10px;
 }
+
+.edit-post-page {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.edit-post-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.edit-post-page form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-post-page label {
+  margin-bottom: 15px;
+}
+
+.edit-post-page textarea {
+  min-height: 150px;
+}
+
+.edit-post-page input,
+.edit-post-page textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.edit-post-page .btn {
+  align-self: center;
+  margin-top: 10px;
+}
+
+.post-page {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.post-page h1 {
+  text-align: center;
+}
+
+.post-page p {
+  margin: 10px 0;
+}
+
+.post-page hr {
+  margin: 20px 0;
+}
+
+.comments {
+  margin-top: 20px;
+}
+
+.comment {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.comment p {
+  margin: 5px 0;
+}
+
+.comment .delete-btn {
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+textarea::placeholder {
+  font-style: italic;
+}
+
+.btn {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #555;
+}

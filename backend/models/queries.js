@@ -59,11 +59,26 @@ const getAllPosts = async () => {
     include: { author: true }, // cause i want the author name not id
   });
 };
-
+/*
 const getPostById = async (id) => {
   return await prisma.post.findUnique({
     where: { id },
     include: { author: true, comments: true },
+  });
+};
+*/
+// BECAUSE I WANT TO KNOW WHO WROTE EACH COMMENT, NESTED INCLUDE
+const getPostById = async (id) => {
+  return await prisma.post.findUnique({
+    where: { id },
+    include: {
+      author: true,
+      comments: {
+        include: {
+          author: true, // This will include the author of each comment
+        },
+      },
+    },
   });
 };
 
@@ -106,6 +121,7 @@ const getCommentsByPostId = async (postId) => {
 const createComment = async (data) => {
   return await prisma.comment.create({
     data,
+    include: { author: true },
   });
 };
 

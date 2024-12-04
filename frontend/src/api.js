@@ -61,3 +61,55 @@ export const createPost = async ({ title, content, authorId }) => {
   if (!res.ok) throw new Error("Failed to create post");
   return res.json();
 };
+
+export const fetchPostById = async (postId) => {
+  const res = await fetch(`${API_URL}/posts/${postId}`);
+  if (!res.ok) throw new Error("Failed to fetch post");
+  return res.json();
+};
+
+export const updatePost = async (postId, { title, content }) => {
+  const res = await fetch(`${API_URL}/posts/${postId}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title,
+      content,
+    }),
+  });
+
+  if (!res.ok) throw new Error("Failed to update post");
+  return res.json();
+};
+
+export const addComment = async (postId, content) => {
+  const res = await fetch(`${API_URL}/posts/${postId}/comments`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json", // TOOK ME HOURS BECAUSE THAT LINE WAS MISSING SO REQ.BODY WAS EMPTY, frontend error
+    },
+    body: JSON.stringify({
+      content,
+      authorId: parseInt(localStorage.getItem("id")),
+    }),
+  });
+
+  if (!res.ok) throw new Error("Failed to add comment");
+  return res.json();
+};
+
+export const deleteComment = async (postId, commentId) => {
+  const res = await fetch(`${API_URL}/posts/comments/${commentId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+
+  if (!res.ok) throw new Error("Failed to delete comment");
+  return true;
+};
