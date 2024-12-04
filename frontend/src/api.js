@@ -1,6 +1,16 @@
 const API_URL = "http://localhost:3000";
 
 export const fetchPosts = async () => {
+  const res = await fetch(`${API_URL}/posts/admin`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  if (!res.ok) throw new Error("Error fetching posts");
+  return res.json();
+};
+
+export const fetchPublicPosts = async () => {
   const res = await fetch(`${API_URL}/posts`);
   if (!res.ok) throw new Error("Error fetching posts");
   return res.json();
@@ -14,17 +24,20 @@ export const deletePost = async (postId) => {
     },
   });
   if (!res.ok) throw new Error("Failed to delete post");
-  return res.json();
+  // my rest api doesnt return anything when deleting (204 no content)
+  // so res.json() causes errors
+  //return res.json();
+  return true;
 };
 
-export const togglePublishPost = async (postId) => {
+export const togglePublishPost = async (postId, post) => {
   const res = await fetch(`${API_URL}/posts/${postId}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ published: true }), // Toggle published status
+    body: JSON.stringify({ published: !post.published }), // Toggle published status
   });
   if (!res.ok) throw new Error("Failed to update post status");
   return res.json();

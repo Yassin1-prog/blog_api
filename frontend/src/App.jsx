@@ -9,7 +9,6 @@ import ManagePage from "./pages/ManagePage";
 import CreatePage from "./pages/CreatePage";
 /*
 import PostPage from "./pages/PostPage";
-import CreatePostPage from "./pages/CreatePostPage";
 import EditPostPage from "./pages/EditPostPage";
 */
 

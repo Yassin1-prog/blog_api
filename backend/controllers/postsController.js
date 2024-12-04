@@ -1,5 +1,14 @@
 const db = require("../models/queries");
 
+exports.allpublicpostsGet = async (req, res) => {
+  try {
+    const posts = await db.getAllPublicPosts();
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.allpostsGet = async (req, res) => {
   try {
     const posts = await db.getAllPosts();

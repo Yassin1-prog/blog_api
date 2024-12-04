@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchPosts, deletePost, togglePublishPost } from "../api";
+import PostPreview from "../components/PostPreview";
 
 const ManagePage = () => {
   const [posts, setPosts] = useState([]);
@@ -28,10 +29,10 @@ const ManagePage = () => {
     }
   };
 
-  const handleTogglePublish = async (postId) => {
+  const handleTogglePublish = async (Post) => {
     try {
-      const updatedPost = await togglePublishPost(postId);
-      setPosts(posts.map((post) => (post.id === postId ? updatedPost : post)));
+      const updatedPost = await togglePublishPost(Post.id, Post);
+      setPosts(posts.map((post) => (post.id === Post.id ? updatedPost : post)));
     } catch {
       setError("Failed to update post status.");
     }
@@ -51,16 +52,12 @@ const ManagePage = () => {
       <div className="post-list">
         {posts.map((post) => (
           <div key={post.id} className="post-item">
-            <h2>{post.title}</h2>
-            <p>By {post.authorId}</p>
+            <PostPreview key={post.id} post={post} />
             <div className="post-actions">
               <button className="btn" onClick={() => handleEdit(post.id)}>
                 Edit
               </button>
-              <button
-                className="btn"
-                onClick={() => handleTogglePublish(post.id)}
-              >
+              <button className="btn" onClick={() => handleTogglePublish(post)}>
                 {post.published ? "Unpublish" : "Publish"}
               </button>
               <button className="btn" onClick={() => handleDelete(post.id)}>

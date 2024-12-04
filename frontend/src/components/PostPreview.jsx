@@ -6,7 +6,8 @@ const PostPreview = ({ post }) => (
       <h2>{post.title}</h2>
       <p>{post.content.slice(0, 100)}...</p>
       <p>
-        By {post.authorId}, on {new Date(post.createdAt).toLocaleDateString()}
+        By {post.author.username}, on{" "}
+        {new Date(post.createdAt).toLocaleDateString()}
       </p>
     </Link>
   </div>

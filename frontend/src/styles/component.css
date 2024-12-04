@@ -91,6 +91,14 @@ button {
   background-color: #f9f9f9;
 }
 
+.postPreview {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
 .post-item h2 {
   margin: 0 0 10px;
 }

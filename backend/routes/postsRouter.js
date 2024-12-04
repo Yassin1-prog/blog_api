@@ -4,7 +4,12 @@ const passport = require("passport");
 const postsRouter = Router();
 const postsController = require("../controllers/postsController");
 
-postsRouter.get("/", postsController.allpostsGet);
+postsRouter.get("/", postsController.allpublicpostsGet);
+postsRouter.get(
+  "/admin",
+  passport.authenticate("jwt", { session: false }),
+  postsController.allpostsGet
+);
 postsRouter.post(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -14,12 +19,12 @@ postsRouter.get("/:id", postsController.postsGet);
 postsRouter.put(
   "/:id",
   passport.authenticate("jwt", { session: false }),
-  postsController.postsDelete
+  postsController.postsPut
 );
 postsRouter.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
-  postsController.postsPut
+  postsController.postsDelete
 );
 
 postsRouter.get("/:id/comments", postsController.commentsGet);

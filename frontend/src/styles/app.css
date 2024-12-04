@@ -25,6 +25,10 @@ a {
   padding: 10px;
 }
 
+.post-preview > a {
+  color: black;
+}
+
 .error {
   color: red;
 }

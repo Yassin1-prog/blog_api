@@ -37,10 +37,26 @@ const deleteUser = async (id) => {
 };
 
 // Posts
-const getAllPosts = async () => {
+// WHEN INCLUDE IT FETCHES THE COMMENTS AS WELL, (SQL JOIN) AND THAT WOULD
+// MAKE THE REST OF THE COMMENTS GET PRETTY USELESS, MY CHOICE WHICH PATH
+/*
+const getAllPublicPosts = async () => {
   return await prisma.post.findMany({
     where: { published: true },
     include: { author: true, comments: true },
+  });
+};
+*/
+const getAllPublicPosts = async () => {
+  return await prisma.post.findMany({
+    where: { published: true },
+    include: { author: true },
+  });
+};
+
+const getAllPosts = async () => {
+  return await prisma.post.findMany({
+    include: { author: true }, // cause i want the author name not id
   });
 };
 
@@ -62,9 +78,13 @@ const createPost = async (authorId, title, content, published) => {
   });
 };
 
+// works and you can pass req.body as data without deconstructing but req.body should only
+// have relevant fields which is easy to do from the frontend, less than req.body is fine and wont throw an error
+// but new fields that dont exist would break
 const updatePost = async (id, data) => {
   return await prisma.post.update({
     where: { id },
+    include: { author: true },
     data,
   });
 };
@@ -104,6 +124,7 @@ module.exports = {
   deleteUser,
   // Post Queries
   getAllPosts,
+  getAllPublicPosts,
   getPostById,
   createPost,
   updatePost,
